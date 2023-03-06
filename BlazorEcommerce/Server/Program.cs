@@ -4,7 +4,6 @@ global using BlazorEcommerce.Server.Data;
 global using BlazorEcommerce.Server.Services.ProductService;
 global using BlazorEcommerce.Server.Services.CategoryService;
 using Microsoft.AspNetCore.ResponseCompression;
-using BlazorEcommerce.Server.Services.CategoryService;
 
 var builder = WebApplication.CreateBuilder(args);
 

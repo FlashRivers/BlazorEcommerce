@@ -1,6 +1,4 @@
-﻿using System.Net.Http.Json;
-
-namespace BlazorEcommerce.Client.Services.ProductService
+﻿namespace BlazorEcommerce.Client.Services.ProductService
 {
     public class ProductService : IProductService
     {
