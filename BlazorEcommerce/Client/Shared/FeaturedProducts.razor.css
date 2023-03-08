@@ -14,7 +14,7 @@ img {
 }
 
     img:hover {
-        transform: scale(1:1) rotate(5deg);
+        transform: scale(1.1) rotate(5deg);
     }
 
 .featured-product {
@@ -26,7 +26,7 @@ img {
     max-width: 200px;
 }
 
-@media (max-width: 1023.98) {
+@media (max-width: 1023.98px) {
     .container {
         justify-content: flex-start;
     }
