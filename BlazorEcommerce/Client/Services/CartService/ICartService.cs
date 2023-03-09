@@ -6,6 +6,6 @@
         Task AddToCart(CartItem cartItem);
         Task<List<CartItem>> GetCartItems();
         Task<List<CartProductResponse>> GetCartProducts();
-        //Task RemoveFromCart(CartItem cartItem);
+        Task RemoveProductFromCart(int productId, int productTypeId);
     }
 }
