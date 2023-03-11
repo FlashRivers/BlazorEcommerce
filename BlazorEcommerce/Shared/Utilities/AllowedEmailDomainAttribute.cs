@@ -9,28 +9,19 @@ namespace BlazorEcommerce.Shared.Utilities
 {
     public class AllowedEmailDomainAttribute : ValidationAttribute
     {
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            if (value == null || value.ToString().Length == 0)
+            string email = value?.ToString() ?? "";
+
+            string[] strings = email.ToString().Split('@');
+
+            if (strings[1].ToLower() == "richardgarrison.com" || strings[1].ToLower() == "gmail.com")
             {
-                return new ValidationResult("Email is required");
+                return ValidationResult.Success;
             }
             else
             {
-                if (!value.ToString().Contains('@'))
-                {
-                    return new ValidationResult("The Email is invalid");
-                }
-
-                string[] strings = value.ToString().Split('@');
-                if (strings[1].ToLower() == "richardgarrison.com" || strings[1].ToLower() == "gmail.com")
-                {
-                    return ValidationResult.Success;
-                }
-                else
-                {
-                    return new ValidationResult("Email domain must be either richardgarrison.com or gmail.com");
-                }
+                return new ValidationResult("Email domain must be either richardgarrison.com or gmail.com.");
             }
         }
     }
