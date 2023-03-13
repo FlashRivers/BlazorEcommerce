@@ -1,6 +1,7 @@
 ﻿using BlazorEcommerce.Server.Migrations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 using System.Security.Claims;
 
 namespace BlazorEcommerce.Server.Controllers
@@ -41,6 +42,13 @@ namespace BlazorEcommerce.Server.Controllers
         public async Task<ActionResult<ServiceResponse<bool>>> UpdateQuantity(CartItem cartItem)
         {
             var result = await _cartService.UpdateQuantity(cartItem);
+            return Ok(result);
+        }
+
+        [HttpDelete("{productId}/{productTypeId}")]
+        public async Task<ActionResult<ServiceResponse<bool>>> RemoveFromCart(int productId, int productTypeId )
+        {
+            var result = await _cartService.RemoveFromCart(productId, productTypeId);
             return Ok(result);
         }
 
