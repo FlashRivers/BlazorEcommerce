@@ -128,7 +128,7 @@ namespace BlazorEcommerce.Server.Services.AuthService
                 return new ServiceResponse<bool>
                 {
                     Success = false,
-                    Message = "User nod found."
+                    Message = "User not found."
                 };
             }
 
