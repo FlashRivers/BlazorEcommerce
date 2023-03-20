@@ -35,7 +35,6 @@
 
             await _context.SaveChangesAsync();
 
-            response.Data = address;
             return response;
         }
 
