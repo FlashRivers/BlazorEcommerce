@@ -19,7 +19,6 @@
             {
                 address.UserId = _authService.GetUserId();
                 _context.Addresses.Add(address);
-                response.Data = address;
             }
             else
             {
@@ -35,6 +34,7 @@
 
             await _context.SaveChangesAsync();
 
+            response.Data = address;
             return response;
         }
 

@@ -5,6 +5,7 @@
 @inject NavigationManager NavigationManager
 
 <PageTitle>Shopping Cart</PageTitle>
+
 <h3>Shopping Cart</h3>
 
 @if (cartProducts == null || cartProducts.Count == 0)
@@ -14,7 +15,7 @@
 else
 {
     <div>
-        @foreach (var product in cartProducts) 
+        @foreach (var product in cartProducts)
         {
             <div class="container">
                 <div class="image-wrapper">
@@ -22,13 +23,15 @@ else
                 </div>
                 <div class="name">
                     <h5><a href="/product/@product.ProductId">@product.Title</a></h5>
-                    <span>@product.ProductType</span><br/>
+                    <span>@product.ProductType</span><br />
                     <input type="number" value="@product.Quantity"
-                        @onchange="@((ChangeEventArgs e) => UpdateQuantity(e, product))"
-                        class="form-control input-quantity"
-                        min="1" />
-                    <button class="btn-delete" @onclick="@(() => 
-                        RemoveProductFromCart(product.ProductId, product.ProductTypeId))">Delete</button>
+                   @onchange="@((ChangeEventArgs e) => UpdateQuantity(e, product))"
+                           class="form-control input-quantity"
+                           min="1" />
+                    <button class="btn-delete" @onclick="@(() =>
+                        RemoveProductFromCart(product.ProductId, product.ProductTypeId))">
+                        Delete
+                    </button>
                 </div>
                 <div class="cart-product-price">$@(product.Price * product.Quantity)</div>
             </div>
@@ -46,6 +49,8 @@ else
     }
     <button @onclick="PlaceOrder" class="btn alert-success float-end mt-1">Checkout</button>
 }
+
+
 
 @code {
     List<CartProductResponse> cartProducts = null;
@@ -68,7 +73,6 @@ else
     {
         await CartService.GetCartItemsCount();
         cartProducts = await CartService.GetCartProducts();
-
         if (cartProducts == null || cartProducts.Count == 0)
         {
             message = "Your cart is empty.";
