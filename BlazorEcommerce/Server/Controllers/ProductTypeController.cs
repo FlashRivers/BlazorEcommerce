@@ -22,5 +22,19 @@ namespace BlazorEcommerce.Server.Controllers
             var response = await _productTypeService.GetProductTypes();
             return Ok(response);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ServiceResponse<List<ProductType>>>> AddProductType(ProductType productType)
+        {
+            var result = await _productTypeService.AddProductType(productType);
+            return Ok(result);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<List<ProductType>>>> UpdateProductType(ProductType productType)
+        {
+            var result = await _productTypeService.UpdateProductType(productType);
+            return Ok(result);
+        }
     }
 }
