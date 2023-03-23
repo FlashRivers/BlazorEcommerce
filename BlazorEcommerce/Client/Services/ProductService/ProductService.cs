@@ -1,4 +1,6 @@
-﻿namespace BlazorEcommerce.Client.Services.ProductService
+﻿using BlazorEcommerce.Shared;
+
+namespace BlazorEcommerce.Client.Services.ProductService
 {
     public class ProductService : IProductService
     {
@@ -14,8 +16,20 @@
         public int CurrentPage { get; set; } = 1;
         public int PageCount { get; set; } = 0;
         public string LastSearchText { get; set; } = string.Empty;
+        public List<Product> AdminProducts { get; set; } = new List<Product>();
 
         public event Action ProductsChanged;
+
+        public async Task GetAdminProducts()
+        {
+            var result = await _http
+                .GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/product/admin");
+            AdminProducts = result.Data;
+            CurrentPage = 1;
+            PageCount = 0;
+            if (AdminProducts.Count == 0)
+                Message = "No products found";
+        }
 
         public async Task<ServiceResponse<Product>> GetProduct(int productId)
         {
